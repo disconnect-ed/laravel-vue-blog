@@ -7,11 +7,11 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 require('./bootstrap');
 
+Vue.use(BootstrapVue)
+
 const app = new Vue({
     el: '#app',
     components: {
         Index
     }
 })
-
-Vue.use(BootstrapVue)
