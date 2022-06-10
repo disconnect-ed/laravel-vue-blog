@@ -1,7 +1,7 @@
 <template>
-    <main>
-
-    </main>
+    <div>
+        <h1>Blog</h1>
+    </div>
 </template>
 
 <script>
@@ -10,6 +10,8 @@
     }
 </script>
 
-<style scoped>
-
+<style lang="scss">
+    #app {
+        background-color: #F1F5FB;
+    }
 </style>
