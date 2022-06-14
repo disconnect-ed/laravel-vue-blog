@@ -3,28 +3,7 @@
         <Header/>
         <b-container>
             <main class="main">
-                <div class="col-12 pt-3">
-                    <MainCardComponent/>
-                </div>
-                <b-row class="pt-3">
-                    <b-col cols="9">
-                        <Card/>
-                        <Card/>
-                        <Card/>
-                        <Card/>
-                        <Card/>
-                        <Card/>
-                        <Card/>
-                        <Card/>
-                    </b-col>
-                    <b-col cols="3">
-                        <SearchComponent/>
-                        <CategoriesComponent/>
-                    </b-col>
-                </b-row>
-                <div class="col-12">
-                    <PaginationComponent/>
-                </div>
+                <router-view/>
             </main>
         </b-container>
         <Footer/>
@@ -34,22 +13,9 @@
 <script>
     import Header from "./components/Header";
     import Footer from "./components/Footer";
-    import Card from "./components/Card";
-    import Aside from "./components/CategoriesComponent";
-    import SearchComponent from "./components/SearchComponent";
-    import CategoriesComponent from "./components/CategoriesComponent";
-    import MainCardComponent from "./components/MainCardComponent";
-    import PaginationComponent from "./components/PaginationComponent";
-
     export default {
         name: "Index",
         components: {
-            PaginationComponent,
-            MainCardComponent,
-            CategoriesComponent,
-            SearchComponent,
-            Aside,
-            Card,
             Footer,
             Header
         }
