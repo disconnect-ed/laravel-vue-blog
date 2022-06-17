@@ -1,16 +1,19 @@
 <template>
     <header class="header d-flex align-items-center justify-content-between">
         <h1>< Blog /></h1>
-        <div v-if="user" class="dropdown">
+        <div v-if="fetchPerson">
+            <b-spinner></b-spinner>
+        </div>
+        <div v-else-if="!fetchPerson && person && token" class="dropdown">
             <button class="btn btn-outline-primary dropdown-toggle" type="button"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                <b-avatar v-if="user.avatar" :src="user.avatar" size="sm"></b-avatar>
+                <b-avatar v-if="person.avatar" :src="person.avatar" size="sm"></b-avatar>
                 <b-avatar v-else size="sm" variant="primary"></b-avatar>
-                {{user.name}}
+                {{person.name}}
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><router-link to="/user" class="dropdown-item" href="#">Профиль</router-link></li>
-                <li><a @click.prevent="out" class="dropdown-item" href="#">Выйти</a></li>
+                <li><a @click.prevent="logout" class="dropdown-item" href="#">Выйти</a></li>
             </ul>
         </div>
         <div v-else>
@@ -25,15 +28,35 @@
         name: "Header",
         data() {
             return {
-                user: {
-                    name: 'Ruslan',
-                    avatar: 'https://cs13.pikabu.ru/avatars/3319/x3319257-1710987376.png'
+                token: null
+            }
+        },
+        updated() {
+            if (!this.token) {
+                const token = localStorage.getItem('x-xsrf-token')
+                if (token) {
+                    this.token = token
                 }
             }
         },
+        mounted() {
+            const token = localStorage.getItem('x-xsrf-token')
+            if (token) {
+                this.$store.dispatch('getProfile')
+                this.token = token
+            }
+        },
         methods: {
-            out() {
-                this.user = null
+            logout() {
+                this.$store.dispatch('logout')
+            }
+        },
+        computed: {
+            person() {
+                return this.$store.getters.person
+            },
+            fetchPerson() {
+                return this.$store.getters.fetchPerson
             }
         }
     }

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Index from "./Index";
 import {BootstrapVue} from 'bootstrap-vue'
 import router from "./router";
+import store from './store'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -15,5 +16,6 @@ const app = new Vue({
     components: {
         Index
     },
-    router
+    router,
+    store
 })

@@ -16,7 +16,11 @@
             </b-col>
             <b-col cols="3">
                 <SearchComponent/>
-                <CategoriesComponent/>
+                <Menu className="categories sticky-top mt-3 mb-3"
+                      title="Категории"
+                      styles="top: 15px"
+                      :link-list="linkList"
+                />
             </b-col>
         </b-row>
         <div class="col-12">
@@ -27,16 +31,23 @@
 
 <script>
     import MainCardComponent from "../components/MainCardComponent";
-    import CategoriesComponent from "../components/CategoriesComponent";
     import SearchComponent from "../components/SearchComponent";
     import Card from "../components/Card";
     import PaginationComponent from "../components/PaginationComponent";
+    import Menu from "../components/Menu";
 
     export default {
         name: "Main",
+        data() {
+            return {
+                linkList: [
+                    {title: 'JavaScript', link: '/'}
+                ]
+            }
+        },
         components: {
+            Menu,
             MainCardComponent,
-            CategoriesComponent,
             SearchComponent,
             PaginationComponent,
             Card,
